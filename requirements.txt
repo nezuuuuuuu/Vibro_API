@@ -4,7 +4,7 @@ requests==2.32.3
 python-multipart==0.0.20
 gunicorn==23.0.0
 sounddevice==0.5.1
-tensorflow==2.10.0
+tensorflow==2.18.0
 tensorflow-io==0.27.0
 tensorflow-hub==0.16.1
 
