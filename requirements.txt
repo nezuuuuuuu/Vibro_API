@@ -7,4 +7,6 @@ sounddevice==0.5.1
 tensorflow==2.18.0
 tensorflow-io==0.29.0
 tensorflow-hub==0.16.1
-
+matplotlib== 3.10.1
+numpy== 1.26.4
+pandas== 2.2.3
