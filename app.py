@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
 import os
+from model import YAMNetClassifier  # Import the YAMNet class
 
 app = Flask(__name__)
+yamnet = YAMNetClassifier()
 
 # Define a directory to save the uploaded audio files
 UPLOAD_FOLDER = './uploads'
@@ -12,11 +14,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def home():
     return "Home"
 
-@app.route("/get-user/<sound>")
-def predict(sound):
-    return {
-        "user_id": sound
-    }
 
 @app.route("/get-prediction", methods=["POST"])
 def getsound():
@@ -32,7 +29,11 @@ def getsound():
     file_path = os.path.join(app.config['UPLOAD_FOLDER'], audio_file.filename)
     audio_file.save(file_path)
     
-    return jsonify({"message": "Audio file uploaded successfully", "file_path": file_path}), 201
+    # Use YAMNet to predict the sound
+    prediction = yamnet.predict(file_path)
+    
+    return jsonify({"message": "Audio file processed successfully", "prediction": prediction}), 200
+
 
 if __name__ == "__main__":
     app.run(debug=True)
