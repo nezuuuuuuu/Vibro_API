@@ -1,1 +1,1 @@
-web: gunicorn Vibro_API:app
+web: gunicorn app:app
